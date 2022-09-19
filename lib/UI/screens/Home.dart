@@ -17,47 +17,16 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("RNR")),
-      body: Stack(
-        children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 60.0),
-            color: Colors.black,
-            child: currentSelectedMenu == 0
-                ? const HomeContent()
-                : const SettingsPage(),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: BottomNavigationBar(
-              onTap: (value) {
-                setState(() {
-                  currentSelectedMenu = value;
-                  print("BottomNavigationBar ->onTap->$value");
-                });
-              },
-              items: [
-                BottomMenuItem(
-                  Icon(
-                    Icons.home,
-                    color: Colors.white,
-                  ),
-                  "Updates",
-                  Colors.deepOrange,
-                ),
-                BottomMenuItem(
-                  Icon(
-                    Icons.home,
-                    color: Colors.white,
-                  ),
-                  "Settings",
-                  Colors.green,
-                ),
-              ],
-            ),
-          )
-        ],
+      appBar: AppBar(
+        title: Text("RNR"),
+        leading: Icon(
+          Icons.menu,
+        ),
       ),
+      body: HomeContent(),
+      // bottomSheet: ,
+      // else
+      bottomNavigationBar: const BottomNavMenu(),
     );
   }
 
@@ -65,5 +34,46 @@ class _HomeScreenState extends State<HomeScreen> {
       Icon ico, String label, Color background) {
     return BottomNavigationBarItem(
         icon: ico, label: label, backgroundColor: background);
+  }
+}
+
+class BottomNavMenu extends StatefulWidget {
+  const BottomNavMenu({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<BottomNavMenu> createState() => _BottomNavMenuState();
+}
+
+class _BottomNavMenuState extends State<BottomNavMenu> {
+  var selectedIndex_ = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return NavigationBar(
+        // selectedItemColor: ThemeData.dark().primaryColorDark,
+        // unselectedItemColor: ThemeData.dark().primaryColorLight,
+        // currentIndex: 0,
+        // showUnselectedLabels: true,
+        selectedIndex: selectedIndex_,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        onDestinationSelected: (value) {
+          selectedIndex_ = value;
+          setState(() {});
+        },
+        destinations: [
+          NavigationDestination(
+            icon: Icon(Icons.home),
+            selectedIcon: Icon(Icons.home_outlined),
+            label: 'Home',
+          ),
+          NavigationDestination(icon: Icon(Icons.star), label: 'Reward'),
+          NavigationDestination(icon: Icon(Icons.home), label: 'Home'),
+          NavigationDestination(
+              icon: Icon(Icons.group_off_outlined), label: 'Guideline'),
+          NavigationDestination(
+              icon: Icon(Icons.rowing), label: 'Notification'),
+        ]);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:rnr/UI/screens/auth/WelcomeScreen.dart';
 
 import 'UI/screens/Home.dart';
@@ -12,9 +13,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(),
+        theme: ThemeData(useMaterial3: true, primarySwatch: Colors.green),
         home: const WelcomeScreen());
   }
 }
