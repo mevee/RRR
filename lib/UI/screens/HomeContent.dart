@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rnr/data/models/resposne/post.dart';
+import '../../data/pref/session.dart';
 import '../../respository/RepoImplm.dart';
 
 const TAG = 'HomeContent';
@@ -7,13 +8,20 @@ const TAG = 'HomeContent';
 class HomeContent extends StatelessWidget {
   const HomeContent({Key? key}) : super(key: key);
 
+  void checkIfUserIsLogged() {
+    print("checkIfUserIsLogged()");
+    final session = Session();
+    print('Saved user details : ' + session.getUser());
+  }
+
   @override
   Widget build(BuildContext context) {
     var repo = RepoImplement();
     // repo.getPost();
+    checkIfUserIsLogged();
 
     return FutureBuilder(
-      future: repo.getImages(),
+      // future: repo.getImages(),
       builder: (context, snapshot) {
         print("$TAG build $build");
         if (snapshot.connectionState == ConnectionState.waiting) {

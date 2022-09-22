@@ -6,6 +6,10 @@ import 'package:get/instance_manager.dart';
 import 'package:rnr/UI/res/styles.dart';
 import 'package:rnr/UI/screens/Home.dart';
 import 'package:rnr/UI/widgets/CommonButton.dart';
+import 'package:rnr/data/models/user.dart';
+
+import '../../../data/pref/session.dart';
+import '../profile/ProfileScreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
@@ -19,10 +23,20 @@ class _HomeScreenState extends State<WelcomeScreen>
   int currentSelectedMenu = 0;
   late AnimationController addToCartPopUpAnimationController;
 
+  void saveUserData() async {
+    print("saveUserData()");
+    final session = Session();
+    var user = User("test@email.com", '123456789', 'gjhgchjgdjdgjdj');
+    session.saveUser(user);
+  }
+
   @override
   void initState() {
+    saveUserData();
+
     addToCartPopUpAnimationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 800));
+
     super.initState();
   }
 
@@ -47,7 +61,8 @@ class _HomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 3), () {
-      Get.off(() => HomeScreen());
+      // Get.off(() => HomeScreen());
+      Get.off(() => ProfileScreen());
     });
 
     return Scaffold(
