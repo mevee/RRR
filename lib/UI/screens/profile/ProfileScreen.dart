@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/basic.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../notification/notification_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -72,11 +76,17 @@ class _MyWidgetState extends State<ProfileScreen> {
                   SizedBox(
                     height: 20,
                   ),
-                  profileCard("Score Card ", "Last score : 200"),
-                  profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
-                  profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
-                  profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
-                  profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
+                  profileCard(
+                    "Score Card ",
+                    "Last score : 200",
+                    (() {
+                      Get.to(() => NotificationPage());
+                    }),
+                  ),
+                  // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com",),
+                  // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
+                  // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
+                  // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
                 ],
               ),
             ),
@@ -108,54 +118,59 @@ class _MyWidgetState extends State<ProfileScreen> {
 class profileCard extends StatelessWidget {
   String title;
   String subTitle;
+  Function() onClick;
 
   profileCard(
     this.title,
-    this.subTitle, {
+    this.subTitle,
+    this.onClick, {
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(8),
-      margin: EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(
-          6,
+    return GestureDetector(
+      onTap: onClick,
+      child: Container(
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.green,
+          borderRadius: BorderRadius.circular(
+            6,
+          ),
         ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(Icons.lock),
-          SizedBox(
-            width: 16,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: TextStyle(
-                    color: Colors.black87,
-                    fontSize: 16,
-                    fontStyle: FontStyle.italic),
-              ),
-              Text(
-                subTitle,
-                style: TextStyle(color: Colors.white, fontSize: 12),
-              ),
-            ],
-          ),
-          SizedBox(
-            width: 60,
-          ),
-          RotatedBox(
-              quarterTurns: 2, child: Icon(Icons.arrow_back_ios_rounded)),
-        ],
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(Icons.lock),
+            SizedBox(
+              width: 16,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic),
+                ),
+                Text(
+                  subTitle,
+                  style: TextStyle(color: Colors.white, fontSize: 12),
+                ),
+              ],
+            ),
+            SizedBox(
+              width: 60,
+            ),
+            RotatedBox(
+                quarterTurns: 2, child: Icon(Icons.arrow_back_ios_rounded)),
+          ],
+        ),
       ),
     );
   }
