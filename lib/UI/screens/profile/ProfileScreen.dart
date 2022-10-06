@@ -6,7 +6,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:rnr/UI/screens/bazinga/bazinga_page.dart';
 
+import '../home/new_home_page.dart';
 import '../notification/notification_page.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -83,7 +85,13 @@ class _MyWidgetState extends State<ProfileScreen> {
                       Get.to(() => NotificationPage());
                     }),
                   ),
-                  // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com",),
+                  profileCard("Home page", "home screen", (() {
+                    Get.to(() => HomePage());
+                  })),
+                  profileCard("Bazinga", "Clicl to see", (() {
+                    Get.to(() => BazingaPage());
+                  })),
+
                   // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
                   // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
                   // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
