@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
+import 'package:pie_chart/pie_chart.dart';
+import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../../res/constant.dart';
 import '../notification/components/defaultAppBar.dart';
 import '../notification/components/defaultBackButton.dart';
+import 'chardata.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -56,6 +59,34 @@ class _HomePageState extends State<HomePage> {
   Widget getListView() {
     return Column(
       children: [
+        Container(
+          height: 300,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: Stack(
+                    children: [
+                      getPieChart(),
+                    ],
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  child: Stack(
+                    children: [
+                      getBarGraphChart(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
         Text(
           'First Category',
           style: TextStyle(
@@ -85,6 +116,85 @@ class _HomePageState extends State<HomePage> {
       ],
     );
   }
+
+  Widget getPieChart() {
+    final dataList = {
+      "Flutter": 5.0,
+      "A": 5.0,
+      "B": 5.0,
+      "C": 5.0,
+      "D": 5.0,
+      "E": 5.0,
+      "F": 5.0,
+      "G": 5.0,
+    };
+
+    return Center(
+      child: PieChart(
+        chartRadius: 160,
+        dataMap: dataList,
+        chartLegendSpacing: 10,
+        legendOptions: LegendOptions(),
+      ),
+    );
+  }
+}
+
+Widget getBarGraphChart() {
+  final List<BarChartModel> data = [
+    BarChartModel(
+      year: "2014",
+      financial: 250,
+      color: charts.ColorUtil.fromDartColor(Colors.blueGrey),
+    ),
+    BarChartModel(
+      year: "2015",
+      financial: 300,
+      color: charts.ColorUtil.fromDartColor(Colors.red),
+    ),
+    BarChartModel(
+      year: "2016",
+      financial: 100,
+      color: charts.ColorUtil.fromDartColor(Colors.green),
+    ),
+    BarChartModel(
+      year: "2017",
+      financial: 450,
+      color: charts.ColorUtil.fromDartColor(Colors.yellow),
+    ),
+    BarChartModel(
+      year: "2018",
+      financial: 630,
+      color: charts.ColorUtil.fromDartColor(Colors.lightBlueAccent),
+    ),
+    BarChartModel(
+      year: "2019",
+      financial: 950,
+      color: charts.ColorUtil.fromDartColor(Colors.pink),
+    ),
+    BarChartModel(
+      year: "2020",
+      financial: 400,
+      color: charts.ColorUtil.fromDartColor(Colors.purple),
+    ),
+  ];
+
+  List<charts.Series<BarChartModel, String>> series = [
+    charts.Series(
+      id: "financial",
+      data: data,
+      domainFn: (BarChartModel series, _) => series.year,
+      measureFn: (BarChartModel series, _) => series.financial,
+      colorFn: (BarChartModel series, _) => series.color,
+    ),
+  ];
+
+  return Center(
+    child: charts.BarChart(
+      series,
+      animate: true,
+    ),
+  );
 }
 
 class NotificationItem extends StatelessWidget {

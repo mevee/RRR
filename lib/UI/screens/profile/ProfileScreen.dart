@@ -91,6 +91,9 @@ class _MyWidgetState extends State<ProfileScreen> {
                   profileCard("Bazinga", "Clicl to see", (() {
                     Get.to(() => BazingaPage());
                   })),
+                  profileCard("Pie Chart", "Clicl to see", (() {
+                    Get.to(() => BazingaPage());
+                  })),
 
                   // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
                   // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
