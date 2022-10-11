@@ -94,8 +94,13 @@ class _MyWidgetState extends State<ProfileScreen> {
                     "Bazinga",
                     "Clicl to see",
                     (() {
-                      Get.to(
-                        () => BazingaPage(),
+                      // Get.offAllNamed(
+                      //   "/Bazinga",
+                      //   // arguments: ["Name", "LL", "YY", "YY", "MON", "MM"],
+                      //   arguments: {"Name": "Bazinga", "Id": "30000"},
+                      // );
+                      Get.offAllNamed(
+                        "/",
                         // arguments: ["Name", "LL", "YY", "YY", "MON", "MM"],
                         arguments: {"Name": "Bazinga", "Id": "30000"},
                       );
