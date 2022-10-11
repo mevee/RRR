@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../res/constant.dart';
 import '../notification/components/defaultAppBar.dart';
@@ -14,12 +15,24 @@ class BazingaPage extends StatefulWidget {
 }
 
 class _BazingaPageState extends State<BazingaPage> {
+  String pageName = "App Name";
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    final data = Get.arguments;
+
+    if (data != null) {
+      pageName = "${data["Name"]} ID id ${data["Id"]}";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffE3E0E0),
       appBar: DefaultAppBar(
-        title: 'Bazinga',
+        title: '${pageName}',
         child: DefaultBackButton(),
       ),
       body: ListView(

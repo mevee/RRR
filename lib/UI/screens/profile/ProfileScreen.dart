@@ -86,13 +86,25 @@ class _MyWidgetState extends State<ProfileScreen> {
                     }),
                   ),
                   profileCard("Home page", "home screen", (() {
-                    Get.to(() => HomePage());
+                    Get.to(
+                      () => HomePage(),
+                    );
                   })),
-                  profileCard("Bazinga", "Clicl to see", (() {
-                    Get.to(() => BazingaPage());
-                  })),
+                  profileCard(
+                    "Bazinga",
+                    "Clicl to see",
+                    (() {
+                      Get.to(
+                        () => BazingaPage(),
+                        // arguments: ["Name", "LL", "YY", "YY", "MON", "MM"],
+                        arguments: {"Name": "Bazinga", "Id": "30000"},
+                      );
+                    }),
+                  ),
                   profileCard("Pie Chart", "Clicl to see", (() {
-                    Get.to(() => BazingaPage());
+                    Get.to(
+                      () => BazingaPage(),
+                    );
                   })),
 
                   // profileCard("Ravi kumat Shukla ", "ravikant@gmail.com"),
