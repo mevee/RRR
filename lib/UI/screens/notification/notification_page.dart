@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../res/constant.dart';
 import 'components/defaultAppBar.dart';
 import 'components/defaultBackButton.dart';
+import 'package:rive/rive.dart';
 
 class NotificationPage extends StatefulWidget {
   NotificationPage({Key? key}) : super(key: key);
@@ -20,28 +21,31 @@ class _NotificationPageState extends State<NotificationPage> {
         title: 'Notification',
         child: DefaultBackButton(),
       ),
-      body: ListView(
+      body: Stack(
         children: [
-          NotificationItem(
-            title:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            date: '11/Feb/2021 04:42 PM',
-            message:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+          // Riv.asset(),
+          ListView(
+            children: [
+              NotificationItem(
+                title:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                date: '11/Feb/2021 04:42 PM',
+                message:
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+              ),
+              NotificationItem(
+                title:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                date: '11/Feb/2021 04:42 PM',
+                message:
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+              ),
+            ],
           ),
-          NotificationItem(
-            title:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            date: '11/Feb/2021 04:42 PM',
-            message:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-          ),
-          NotificationItem(
-            title:
-                'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-            date: '11/Feb/2021 04:42 PM',
-            message:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+          Center(
+            child: RiveAnimation.asset(
+              'assets/anim1.riv',
+            ),
           ),
         ],
       ),
